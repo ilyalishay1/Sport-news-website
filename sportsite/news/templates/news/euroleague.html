@@ -1,0 +1,28 @@
+{% extends 'news/home.html' %}
+{% block title %}Добавить новость{% endblock %}
+{% block content %}
+<div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="{% url 'nba' %}" class="nav-link" aria-current="page">НБА</a></li>
+        <li class="nav-item"><a href="{% url 'euroleague' %}" class="nav-link active">Евролига</a></li>
+      </ul>
+    </header>
+  </div>
+  {% for post in posts %}
+    <ul>
+        <li>
+            <br>
+            <h2>{{post.title}}</h2>
+            <br>
+            {% if post.image %}
+            <p><img class="img.img-article-left.thumb" src="{{post.image.url}}"></p>
+            {% endif %}
+            {% autoescape on %}
+            {{post.content|linebreaks}}
+            {% endautoescape %}
+            <br>
+            {% endfor %}
+        </li>
+    </ul>
+{% endblock %}
